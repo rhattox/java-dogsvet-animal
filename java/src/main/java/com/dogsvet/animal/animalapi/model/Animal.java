@@ -9,8 +9,8 @@ import java.util.Date;
 @Table(name = "animal_table")
 public class Animal {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     @Column(name = "birthday")
     private Date birthday;
