@@ -1,10 +1,36 @@
 version: '3.9'
 services:
-  app:
-    image: java-dogsvet-animal:0.0.1
-    build:
-      context: .
+#  app:
+#    image: java-dogsvet-animal:0.0.1
+#    build:
+#      context: .
+#    ports:
+#      - 5001:5001
+#    volumes:
+#      - ./java:/opt/animal/java
+#    environment:
+#      POSTGRES_ENDPOINT: "db"
+#      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+#      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+#      POSTGRES_DB: ${POSTGRES_DB:-postgres_database}
+  db:
+    image: postgres:9-alpine3.13
     ports:
-      - 5001:5001
-    volumes:
-      - ./java:/opt/animal/java
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres_database}
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "postgres_database", "-U", "postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer:4.8.1
+    ports:
+      - 8080:8080
+    depends_on:
+      db:
+        condition: service_healthy
