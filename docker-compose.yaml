@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+  app:
+    image: java-dogsvet-animal:0.0.1
+    build:
+      context: .
+    ports:
+      - 5001:5001
+    volumes:
+      - ./java:/opt/animal/java
