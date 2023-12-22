@@ -15,8 +15,8 @@ public class AnimalController {
 
     @PostMapping("/animal/register")
     public Animal registerNewAnimal(@RequestBody Animal animal) {
-        System.out.println(animal.getName());
 
+        animalRepository.save(animal);
         return animal;
     }
 }
