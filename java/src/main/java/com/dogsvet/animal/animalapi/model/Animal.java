@@ -1,20 +1,22 @@
 package com.dogsvet.animal.animalapi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 import java.util.Date;
 
 @Entity
+@Table(name = "animal_table")
 public class Animal {
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "birthday")
     private Date birthday;
+    @Column(name = "name")
     private String name;
+    @Column(name = "breed")
     private String breed;
 
     public Animal() {

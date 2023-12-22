@@ -10,13 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AnimalController {
 
+    private final AnimalRepository animalRepository;
+
     @Autowired
-    private AnimalRepository animalRepository;
+    public AnimalController(AnimalRepository animalRepository) {
+        this.animalRepository = animalRepository;
+    }
 
     @PostMapping("/animal/register")
     public Animal registerNewAnimal(@RequestBody Animal animal) {
-        System.out.println(animal.getName());
-
+//        System.out.println(animal.getName() + " " + animal.getBreed()+ " " + animal.getBirthday());
+        animalRepository.save(animal);
         return animal;
     }
 }

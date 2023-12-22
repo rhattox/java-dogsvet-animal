@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: yourname
+      changes:
+        - createTable:
+            tableName: animal_table
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: birthday
+                  type: DATE
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: breed
+                  type: VARCHAR(255)
